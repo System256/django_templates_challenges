@@ -6,12 +6,12 @@
 </head>
 <body>
     <h1>{{ title }} ({{ students|length }})</h1>
-    {% if students|length > 0 %}
+    {% if students %}
         {% for student in students %}
             <p>{{ student }}</p>
         {% endfor %}
     {% else %}
-        {{ no_students }}
+        <p>Список студентов пуст</p>
     {% endif %}
 </body>
 </html>

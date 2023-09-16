@@ -13,7 +13,7 @@ from django.shortcuts import render
 
 def students_view(request: HttpRequest) -> HttpResponse:
     title = 'Список студентов'
-    no_students = 'Список студентов пуст'
+
     students = [
         'Иван',
         'Мария',
@@ -21,4 +21,4 @@ def students_view(request: HttpRequest) -> HttpResponse:
         'Алексей',
     ]
 
-    return render(request, 'students.html', context={'title': title, 'no_students': no_students, 'students': students})
+    return render(request, 'students.html', context={'title': title, 'students': students})
