@@ -8,9 +8,11 @@
     2. Откройте страницу http://127.0.0.1:8000/admin/ и посмотрите на результат.
     3. Поменяйте значение is_admin во вьюхе admin_page_view на True и снова посмотрите результат на странице http://127.0.0.1:8000/admin/
 """
+from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render
 
 
-def admin_page_view(request):
+def admin_page_view(request: HttpRequest) -> HttpResponse:
+    title = 'Админка'
     is_admin = False
-    return render(request, 'level_1/admin_page.html', context={'is_admin': is_admin})
+    return render(request, 'admin_page.html', context={'title': title, 'is_admin': is_admin})

@@ -7,10 +7,13 @@
        Используйте тэмплэйт тэг for для этого и оборачивайте каждое имя в html тэг <p></p>
     2. Откройте страницу http://127.0.0.1:8000/students/ и посмотрите на результат.
 """
+from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render
 
 
-def students_view(request):
+def students_view(request: HttpRequest) -> HttpResponse:
+    title = 'Список студентов'
+
     students = [
         'Иван',
         'Мария',
@@ -18,4 +21,4 @@ def students_view(request):
         'Алексей',
     ]
 
-    return render(request, 'level_1/students.html', context={'students': students})
+    return render(request, 'students.html', context={'title': title, 'students': students})

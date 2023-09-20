@@ -1,3 +1,4 @@
+from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render
 
 
@@ -10,5 +11,9 @@ from django.shortcuts import render
 """
 
 
-def contacts_info_view(request):
-    return render(request, 'level_1/contacts_info.html')
+def contacts_info_view(request: HttpRequest) -> HttpResponse:
+    title = 'Контактная информация'
+    phone_number = '+78455323454'
+    email = 'cooldevs@gmail.com'
+
+    return render(request, 'contacts_info.html', context={'title': title, 'phone_number': phone_number, 'email': email})
