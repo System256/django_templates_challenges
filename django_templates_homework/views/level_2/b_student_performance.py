@@ -8,10 +8,12 @@ from django.shortcuts import render
 
 
 def students_performance_view(request: HttpRequest) -> HttpResponse:
+    title = 'Students performance'
+    no_performances_found = 'no performances found'
     performances = [
         {"student_name": "Reed Boles", "week1_completed": False, "week2_completed": False, "week3_completed": False},
         {"student_name": "David Mitchell", "week1_completed": True, "week2_completed": True, "week3_completed": True},
         {"student_name": "Teresa Monger", "week1_completed": False, "week2_completed": False, "week3_completed": True},
         {"student_name": "Doris Dayton", "week1_completed": True, "week2_completed": False, "week3_completed": False},
     ]
-    return render(request, 'level_2/students_performance.html', context={"performances": performances})
+    return render(request, 'level_2/students_performance.html', context={"title": title, "no_performances_found": no_performances_found, "performances": performances})

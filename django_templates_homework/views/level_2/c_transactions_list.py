@@ -10,5 +10,8 @@ from django_templates_homework.generators.transactions import generate_fake_tran
 
 
 def transactions_list_view(request: HttpRequest) -> HttpResponse:
-    transactions = generate_fake_transactions(num=100)
-    return render(request, 'level_2/transactions_list.html', context={"transactions": transactions})
+    title = 'Transactions'
+    caption = 'transactions to review'
+    num = 100
+    transactions = generate_fake_transactions(num=num)
+    return render(request, 'level_2/transactions_list.html', context={"title": title, "caption": caption, "num": num, "transactions": transactions})

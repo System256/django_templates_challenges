@@ -12,10 +12,11 @@ from django_templates_homework.custom_types import Message
 
 
 def message_details_view(request: HttpRequest) -> HttpResponse:
+    title = 'Детальная страница сообщения'
     message = Message(
         text='почувствуй себя ёжиком',
         author_nickname='bg yellow plum',
         likes_num=3,
         reposts_num=12,
     )
-    return render(request, 'level_2/message_detail.html', context={"message": message})
+    return render(request, 'level_2/message_detail.html', context={"title": title, "message": message})
