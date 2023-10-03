@@ -15,9 +15,7 @@ def tasks_board_view(request: HttpRequest) -> HttpResponse:
         {"title": "Купить продуктов", "status": "todo"},
     ]
     task_statuses = set(n["status"] for n in tasks)
-    print(task_statuses)
     grouped_tasks_by_status = [(task_status, [task['title']\
                                 for task in tasks if task['status'] == task_status])\
                                 for task_status in task_statuses]
-    print(grouped_tasks_by_status)
     return render(request, 'level_2/tasks_board.html', context={"tasks": grouped_tasks_by_status})
