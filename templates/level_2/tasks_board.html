@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
-    <title>{{ title }}</title>
+    <title>Tasks</title>
     <style>
       article.card {
         margin-bottom: 20px;
@@ -15,21 +15,18 @@
   <body>
     <main class="container">
       <div class="grid">
-        {% if tasks|length %}
-        {% regroup tasks by status as status_list %}
-        {% for status in status_list %}
+        {% for task in tasks %}
         <div>
-          <h4>{{ status.grouper }}</h4>
-              {% for task in status.list %}
-              <article class="card">{{ task.title }}</article>
-              {% endfor %}
+          <h4>{{ task.0 }}</h4>
+          {% for title in task.1 %}
+          <article class="card">{{ title }}</article>
+          {% endfor %}
         </div>
-        {% endfor %}
-        {% else %}
+        {% empty %}
         <div>
           <p>there are no tasks yet</p>
         </div>
-        {% endif %}
+        {% endfor %}
       </div>
     </main>
   </body>

@@ -6,7 +6,6 @@ from django.shortcuts import render
 
 
 def tasks_board_view(request: HttpRequest) -> HttpResponse:
-    title = 'Tasks'
     tasks = [
         {"title": "Помыть посуду", "status": "in_progress"},
         {"title": "Вымыть пол", "status": "todo"},
@@ -15,4 +14,10 @@ def tasks_board_view(request: HttpRequest) -> HttpResponse:
         {"title": "Застелить кровать", "status": "in_progress"},
         {"title": "Купить продуктов", "status": "todo"},
     ]
-    return render(request, 'level_2/tasks_board.html', context={"title": title, "tasks": tasks})
+    task_statuses = set(n["status"] for n in tasks)
+    print(task_statuses)
+    grouped_tasks_by_status = [(task_status, [task['title']\
+                                for task in tasks if task['status'] == task_status])\
+                                for task_status in task_statuses]
+    print(grouped_tasks_by_status)
+    return render(request, 'level_2/tasks_board.html', context={"tasks": grouped_tasks_by_status})

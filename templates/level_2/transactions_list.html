@@ -9,12 +9,12 @@
         background-color: lightpink;
       }
     </style>
-    <title>{{ title }}</title>
+    <title>Transactions</title>
   </head>
   <body>
     <main class="container">
       <article>
-        <h2>{{ num }} {{ caption }}</h2>
+        <h2>{{ transactions|length }} transactions to review</h2>
         <table>
           <thead>
             <tr>
@@ -25,14 +25,10 @@
               <th scope="col">Not fraud</th>
             </tr>
           </thead>
-          {% if transactions|length %}
           {% for transaction in transactions %}
           <tbody>
-              {% if transaction.can_be_fraud %}
-              <tr class="dangerous">
-              {% else %}
-              <tr>
-              {% endif %}
+            
+            <tr{% if transaction.can_be_fraud %} class="dangerous"{% endif %}>            
               <th style="font-size: x-small">{{ transaction.id }}</th>
               <td>{{ transaction.submitted_at|date:'Y-m-d H:i' }}</td>
               <td>{{ transaction.amount }} {{ transaction.currency.value }}</td>
@@ -40,8 +36,7 @@
               <td>{% if transaction.can_be_fraud %}❌{% else %}✅{% endif %}</td>
             </tr>
           </tbody>
-          {% endfor %}
-          {% else %}
+          {% empty %}
           <tbody>
             <tr>
               <td>
@@ -49,7 +44,7 @@
               </td>
             </tr>
           </tbody>
-          {% endif %}
+          {% endfor %}
         </table>
       </article>
     </main>

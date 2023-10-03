@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
-    <title>{{ title }}</title>
+    <title>Students performance</title>
   </head>
   <body>
     <main class="container">
@@ -18,7 +18,6 @@
               <th scope="col">Week 3 completed</th>
             </tr>
           </thead>
-          {% if performances|length %}
           {% for student in performances %}
           <tbody>
             <tr>
@@ -46,16 +45,15 @@
               </td>
             </tr>
           </tbody>
-          {% endfor %}
-          {% else %}
+          {% empty %}
           <tbody>
             <tr>
               <td>
-              {{ no_performances_found }}
+                no performances found
               </td>
             </tr>
           </tbody>
-          {% endif %}
+          {% endfor %}
         </table>
       </article>
     </main>
